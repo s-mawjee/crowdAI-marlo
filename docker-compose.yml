@@ -1,0 +1,15 @@
+version: '3'
+services:
+  malmoenv:
+    image: malmo:latest
+    build: ./malmo/
+    expose:
+      - '10000'
+  marlo-agents:
+    image: marlo-random-agent
+    build: ./marlo-agent/
+    depends_on:
+      - malmoenv
+    command: bash -c "python run.py malmoenv:10000"
+    links:
+      - malmoenv
