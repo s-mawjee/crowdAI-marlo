@@ -21,8 +21,8 @@ ENV LANGUAGE en_US.UTF-8
 ENV SHELL /bin/bash
 
 # Set up user
-ARG NB_USER
-ARG NB_UID
+ARG NB_USER=crowdai
+ARG NB_UID=1001
 ENV USER ${NB_USER}
 ENV HOME /home/${NB_USER}
 
@@ -34,10 +34,10 @@ WORKDIR ${HOME}
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-       less \
-       npm \
-       unzip \
-       && apt-get purge && \
+    less \
+    npm \
+    unzip \
+    && apt-get purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
